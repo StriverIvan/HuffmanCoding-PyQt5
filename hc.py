@@ -21,6 +21,7 @@ if [sys.argv[1]] == ['-c']:
     out = h.compress()
     h.save_codes(dictf)
     h.get_code()
+    h.get_freq()
 elif [sys.argv[1]] == ['-x']:
     print()
     pathf = sys.argv[2]

@@ -8,6 +8,7 @@ from PyQt5.QtCore import QDir
 from centralwidget import CentralWidget
 import centralwidget
 
+
 class MainWindow(QMainWindow):
 
     def __init__(self):

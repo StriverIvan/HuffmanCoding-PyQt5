@@ -240,4 +240,22 @@ class HuffmanCoding:
                     character = chr(i)
                     if character in self.codes:
                         if self.codes[character]:
-                            f.write(character+":"+self.codes[character]+"\n")
+                            x = character
+                            if character == "\n":
+                                character = "\\n"
+                            if character == " ":
+                                character = "space"
+                            f.write(character+":"+self.codes[x]+"\n")
+
+    def get_freq(self):
+        fname, fext = os.path.splitext(self.path)
+        str_t = fname + "-freq.txt"
+        if not os.path.exists(str_t):
+            with open(str_t, 'w') as f:
+                    for character in self.freq:
+                        x = character
+                        if character == "\n":
+                            character = "\\n"
+                        if character == " ":
+                            character = "space"
+                        f.write(character + " " + str(self.freq[x]) + "\n")

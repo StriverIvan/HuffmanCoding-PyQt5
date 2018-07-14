@@ -4,7 +4,11 @@
 import os
 from PyQt5.QtWidgets import QWidget, QTextEdit, QGridLayout, QPushButton, QLayout
 from PyQt5.QtGui import QFont
-file2pro = ""
+from painttree import PaintTree
+from sender import Sender
+
+
+file2pro = "data/data.txt"
 
 
 class CentralWidget(QWidget):
@@ -15,6 +19,7 @@ class CentralWidget(QWidget):
         self.initUI()
 
     def initUI(self):
+
         self.textArea = QTextEdit()
         self.textArea.setFont(QFont("consolas"))
         self.huffArea = QTextEdit()
@@ -23,18 +28,27 @@ class CentralWidget(QWidget):
         self.decodeArea.setFont(QFont("consolas"))
 
         self.eButton = QPushButton()
-        self.eButton.setText('encode')
+        self.eButton.setText('Encode')
         self.eButton.clicked.connect(self.encodeAct)
 
         self.dButton = QPushButton()
-        self.dButton.setText('decode')
+        self.dButton.setText('Decode')
         self.dButton.clicked.connect(self.decodeAct)
+
+        self.bButton = QPushButton()
+        self.bButton.setText("BuildTree")
+        self.bButton.clicked.connect(self.buildAct)
+
+        self.sendBtn = QPushButton("Send")
+        self.sendBtn.clicked.connect(self.sendAct)
 
         grid = QGridLayout()
         grid.addWidget(self.textArea, 1, 1, 1, 1)
         grid.addWidget(self.eButton, 2, 1)
         grid.addWidget(self.huffArea, 3, 1, 1, 1)
         grid.addWidget(self.dButton, 4, 1)
+        grid.addWidget(self.bButton, 5, 1)
+        grid.addWidget(self.sendBtn, 5, 2)
         self.setLayout(grid)
         grid.addWidget(self.decodeArea, 1, 2, 4, 1)
 
@@ -57,5 +71,12 @@ class CentralWidget(QWidget):
             with open(str, 'r') as f:
                 data2Decode = f.read()
                 self.decodeArea.setText(data2Decode)
+
+    def buildAct(self):
+        self.win = PaintTree()
+
+
+    def sendAct(self):
+        self.win = Sender()
 
 #
